@@ -20,10 +20,10 @@ void lancerDe(long unsigned modulo = pow(2, 16), int a = 16807, int c = 7, long 
     float temp;
     double khi = 0;
     long unsigned y;
-    int unsigned compteurDe[6];
+    // int unsigned compteurDe[6];
     int unsigned compteurSomme[11];
-    for (i = 0; i < 6; i++)
-        compteurDe[i] = 0;
+    // for (i = 0; i < 6; i++)
+    //     compteurDe[i] = 0;
 
     for (i = 0; i < 12; i++)
         compteurSomme[i] = 0;
@@ -36,18 +36,22 @@ void lancerDe(long unsigned modulo = pow(2, 16), int a = 16807, int c = 7, long 
         n = (x * 6) / modulo;
         // printf("y : %u -> %d  |  x : %u -> %d\n", y, m, x, n);
 
-        compteurDe[m]++;
-        compteurDe[n]++;
+        // compteurDe[m]++;
+        // compteurDe[n]++;
         compteurSomme[n + m]++;
     }
 
     compteurSomme[1] += compteurSomme[0];
     compteurSomme[9] += compteurSomme[10];
+
+    
     //Affichage du resultat
     // for (i = 0; i < 6; i++)
     //     printf("%d : %u\n", i, compteurDe[i]);
-    for (i = 0; i < 11; i++)
-        printf("%d : %u | %f\n", i + 2, compteurSomme[i], ((float)compteurSomme[i] * 2) / NOMBRE_LANCE);
+    // for (i = 0; i < 11; i++)
+    //     printf("%d : %u | %f\n", i + 2, compteurSomme[i], ((float)compteurSomme[i] * 2) / NOMBRE_LANCE);
+
+
     //Test du Khi-deux
     for (i = 1; i < 10; i++)
     {
@@ -62,26 +66,16 @@ void lancerDe(long unsigned modulo = pow(2, 16), int a = 16807, int c = 7, long 
         printf("%d : %d\t - %d\t%f\n", i + 2, N, compteurSomme[i], temp);
         khi += temp;
     }
-    printf("%f\n", khi);
+    printf("khi-deux = %f\nTest khi-deux ", khi);
     if (khi < 15.51)
-        printf("true\n");
+        printf("reussi !\n");
     else
-        printf("false\n");
+        printf("echoue !\n");
 }
 
-int main(/*int argc, char **argv[]*/)
+int main()
 {
-
-    // for(int i = 0; i < argc; i++)
-    // {
-    //     printf("%f\n",*argv[i]);
-    // }
-
-    // int unsigned tab[3] = {(int unsigned)**argv - '0', (int unsigned)**argv - '0', (int unsigned)**argv - '0'};
-    // printf("Iteration # [%c, %c, %c]\n", *argv[1], *argv[2], *argv[3]);
-    // printf("Iteration # [%c, %c, %c]\n", *argv[1][0], *argv[2][1], *argv[3][2]);
-    // printf("Iteration # [%u, %u, %u]\n", tab[0], tab[1], tab[2]);
     lancerDe();
-    printf("Hello world !");
+    // printf("Hello world !");
     return 0;
 }
