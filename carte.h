@@ -7,18 +7,11 @@ class carte
   private:
   public:
     vector<vector<int>> tab_;
-    carte(/*int const taille*/);
-    ~carte();
+    carte();
     void afficherCarte();
 };
 
-carte::carte(/*int const taille*/)
-{
-    // tab_[0]= vector<bool> new vector(false, 20);
-    tab_ = vector<vector<int>>(20, vector<int>(20, 0));
-}
-
-carte::~carte()
+carte::carte()
 {
 }
 

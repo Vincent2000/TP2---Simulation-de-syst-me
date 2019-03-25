@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <math.h>
-#define NOMBRE_LANCE 5000000
+#define NOMBRE_LANCE 1000
 /**
  * @return Génère un nombre entre 0 et modulo
  */
@@ -18,37 +18,24 @@ void lancerDe(long unsigned modulo, int a, int c, long unsigned x)
     float temp;
     double khi = 0;
     long unsigned y;
-    // int unsigned compteurDe[6];
     int unsigned compteurSomme[11];
-    // for (i = 0; i < 6; i++)
-    //     compteurDe[i] = 0;
 
     for (i = 0; i < 12; i++)
         compteurSomme[i] = 0;
 
-    for (i = 0; i < NOMBRE_LANCE; i++)
-    {
+    for (i = 0; i < NOMBRE_LANCE; i++){
         y = genererNombre(modulo, a, c, x);
         x = genererNombre(modulo, a, c, y);
         m = (y * 6) / modulo;
         n = (x * 6) / modulo;
-        // printf("y : %u -> %d  |  x : %u -> %d\n", y, m, x, n);
-
-        // compteurDe[m]++;
-        // compteurDe[n]++;
         compteurSomme[n + m]++;
     }
 
     compteurSomme[1] += compteurSomme[0];
     compteurSomme[9] += compteurSomme[10];
 
-    //Affichage du resultat
-    // for (i = 0; i < 6; i++)
-    //     printf("%d : %u\n", i, compteurDe[i]);
-    // for (i = 0; i < 11; i++)
-    //     printf("%d : %u | %f\n", i + 2, compteurSomme[i], ((float)compteurSomme[i] * 2) / NOMBRE_LANCE);
-
     //Test du Khi-deux
+    printf("Numero du de\tNb apparition theorique\t\tNb d'apparition constate\n");
     for (i = 1; i < 10; i++)
     {
         if (i == 1 || i == 9)
@@ -59,12 +46,15 @@ void lancerDe(long unsigned modulo, int a, int c, long unsigned x)
             N = NOMBRE_LANCE * (12 - (i + 1)) / 36;
         q = compteurSomme[i] - N;
         temp = pow(q, 2) / N;
-        printf("%d : %d\t - %d\t%f\n", i + 2, N, compteurSomme[i], temp);
+        printf("%d\t\t%d\t\t\t\t%d\n", i + 2, N, compteurSomme[i]);
         khi += temp;
     }
+    
     printf("khi-deux = %f\nTest khi-deux ", khi);
     if (khi < 15.51)
         printf("reussi !\n");
     else
         printf("echoue !\n");
+    printf("\n***********************\n");
+    printf("***********************\n\n");
 }

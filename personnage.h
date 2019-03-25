@@ -19,10 +19,8 @@ class Personnage
     Position position_;
     vector<Position> historique_;
     Personnage(int i, int j);
-    ~Personnage();
     void move(Position nouvellePosition);
     bool estAutorise(Position nouvellePosition, char configuration, int taille_carte);
-    void afficher();
     void afficherHistorique();
 };
 
@@ -31,10 +29,6 @@ Personnage::Personnage(int i, int j)
     position_.i_ = i;
     position_.j_ = j;
     historique_ = vector<Position>();
-}
-
-Personnage::~Personnage()
-{
 }
 
 void Personnage::move(Position nouvellePosition)
@@ -75,11 +69,6 @@ bool Personnage::estAutorise(Position nouvellePosition, char configuration, int 
         }
     }
     return false;
-}
-
-void afficher()
-{
-    // printf("%d %d")
 }
 
 void Personnage::afficherHistorique()
